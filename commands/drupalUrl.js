@@ -4,7 +4,7 @@ const config = {
 
 const Events = require('events');
 
-module.exports = class CustomPause extends Events {
+module.exports = class DrupalUrl extends Events {
   command(url) {
     let baseUrl = config.baseUrl;
     // Remove trailing slash.
