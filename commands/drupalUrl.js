@@ -1,14 +1,8 @@
-const config = {
-  baseUrl: process.env.NIGHTWATCH_DRUPAL_URL,
-};
-
 const Events = require('events');
 
 module.exports = class DrupalUrl extends Events {
   command(url) {
-    let baseUrl = config.baseUrl;
-    // Remove trailing slash.
-    baseUrl = baseUrl.replace(/\/$/, '');
+    let baseUrl = this.api.globals.drupalUrl;
     // Remove starting slash.
     url = url.replace(/\/^/, '');
 

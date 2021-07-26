@@ -1,16 +1,13 @@
 const Events = require('events');
 const execSync = require('child_process').execSync;
-const config = {
-  baseUrl: process.env.NIGHTWATCH_DRUPAL_URL,
-  drushCommand: process.env.NIGHTWATCH_DRUSH_COMMAND && process.env.NIGHTWATCH_DRUSH_COMMAND.length ? process.env.NIGHTWATCH_DRUSH_COMMAND : './vendor/bin/drush',
-};
 
 module.exports = class Drush extends Events {
   command(command, callback) {
     let procResult = '';
+    const drushCommand = this.api.globals.drushCommand && this.api.globals.drushCommand.length ? this.api.globals.drushCommand : './vendor/bin/drush';
 
     try {
-      const proc = execSync(`${config.drushCommand} --uri=${config.baseUrl} ${command}`);
+      const proc = execSync(`${drushCommand} --uri=${this.api.globals.drupalUrl} ${command}`);
       procResult = proc.toString();
     } catch (error) {
       this.api.assert.fail(error);
