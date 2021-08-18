@@ -1,13 +1,18 @@
-const Events = require('events');
-const execSync = require('child_process').execSync;
+const Events = require("events");
+const execSync = require("child_process").execSync;
 
 module.exports = class Drush extends Events {
   command(command, callback) {
-    let procResult = '';
-    const drushCommand = this.api.globals.drushCommand && this.api.globals.drushCommand.length ? this.api.globals.drushCommand : './vendor/bin/drush';
+    let procResult = "";
+    const drushCommand =
+      this.api.globals.drushCommand && this.api.globals.drushCommand.length
+        ? this.api.globals.drushCommand
+        : "./vendor/bin/drush";
 
     try {
-      const proc = execSync(`${drushCommand} --uri=${this.api.globals.drupalUrl} ${command}`);
+      const proc = execSync(
+        `${drushCommand} --uri=${this.api.globals.drupalUrl} ${command}`
+      );
       procResult = proc.toString();
     } catch (error) {
       this.api.assert.fail(error);
@@ -19,6 +24,6 @@ module.exports = class Drush extends Events {
       callback.call(this.api, procResult);
     }
 
-    this.emit('complete');
+    this.emit("complete");
   }
-}
+};
