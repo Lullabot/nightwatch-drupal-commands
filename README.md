@@ -69,13 +69,17 @@ useful for logging in:
 ```
 'Demo test' : function(browser) {
   const nodeForm = browser.page.NodeForm();
-  browser.drupalUrl('/node/add/page');
   nodeForm
+    .add('page')
     .setTitle('Hello, world!')
     .setPublishedStatus(true)
     .save();
 }
 ```
+
+#### `add(string contentType)`
+
+Navigates to the node/add page for a specific content type.
 
 #### `setTitle(string value)`
 

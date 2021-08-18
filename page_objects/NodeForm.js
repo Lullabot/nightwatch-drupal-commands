@@ -1,5 +1,9 @@
 module.exports = {
   commands: {
+    add(contentType) {
+      this.drupalUrl(`/node/add/${contentType}`);
+      return this;
+    },
     setTitle(value) {
       this.waitForElementVisible("@title")
         .clearValue("@title")
