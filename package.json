@@ -1,5 +1,6 @@
 {
   "name": "@lullabot/nightwatch-drupal-commands",
+  "version": "1.0.0",
   "scripts": {
     "autofix": "prettier --write .",
     "test": "prettier --check ."
