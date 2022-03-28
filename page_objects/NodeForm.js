@@ -33,7 +33,7 @@ module.exports = {
       this.waitForElementVisible("@publishedStatus").getAttribute(
         "@publishedStatus",
         "checked",
-        function (result) {
+        (result) => {
           if (
             (result.value === "true" && !status) ||
             (result.value !== "true" && status)
